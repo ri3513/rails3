@@ -1,20 +1,38 @@
 class BooksController < ApplicationController
-  def new
-  end
 
+  
   def index
+    @books =Book.all
     @book = Book.new
   end
   
   def create
-    book = Book.new(book_params)
-book.save
-redirect_to'top'
-end
+    @book = Book.new(book_params)
+    
+  if @book.save
+
+  redirect_to '/index'
+  
+  else
+  render :new
+
+  end
+  end
+
+ 
+  
   def show
+    @book = Book.find(params[:id])
   end
 
   def edit
+  end
+  
+  
+  def destroy
+    book = Book.find(params[:id])  
+    book.destroy
+    redirect_to '/index'  
   end
   
 private
