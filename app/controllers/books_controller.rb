@@ -11,7 +11,7 @@ class BooksController < ApplicationController
     
   if @book.save
 
-  redirect_to '/index'
+  redirect_to '/books'
   
   else
   render :new
@@ -32,7 +32,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])  
     book.destroy
-    redirect_to '/index'  
+    redirect_to '/books'
   end
   
 private
