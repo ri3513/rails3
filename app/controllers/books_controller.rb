@@ -11,7 +11,7 @@ class BooksController < ApplicationController
 
   if @book.save
 
-  redirect_to books_path(@book.id), notice: "You have created book successfully"
+  redirect_to book_path(@book.id), notice: "You have created book successfully"
 
 
   else
@@ -33,9 +33,14 @@ class BooksController < ApplicationController
   end
 
   def update
-    book = Book.find(params[:id])
-    book.update(book_params)
-    redirect_to books_path(book.id), notice: "You have created book successfully"
+    @book = Book.find(params[:id])
+    if @book.update(book_params)
+    redirect_to book_path(@book.id), notice: "You have created book successfully"
+
+  else
+    render :edit
+
+  end
 
   end
 
